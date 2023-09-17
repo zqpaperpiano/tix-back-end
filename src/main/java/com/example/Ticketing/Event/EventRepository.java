@@ -1,4 +1,4 @@
-package com.example.demo.Event;
+package com.example.Ticketing.Event;
 
 import java.util.List;
 import java.util.Optional;
