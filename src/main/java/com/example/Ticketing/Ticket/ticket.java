@@ -1,5 +1,7 @@
 package com.example.Ticketing.Ticket;
 
+import org.bson.types.ObjectId;
+
 // import javax.persistence.*;
 // import javax.validation.constraints.*;
 
@@ -16,7 +18,7 @@ import lombok.*;
 @EqualsAndHashCode
 public class Ticket {
     private int seat_num; // 1 - 400
-    private @Id Long id;
+    private @Id ObjectId id;
     private Event event;
     private boolean sold = false;
 
