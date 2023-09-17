@@ -11,6 +11,6 @@ import com.example.Ticketing.Ticket.Ticket;
 
 @Repository
 public interface EventRepository extends MongoRepository<Event, ObjectId> {
-    List<Event> findById(long ObjectId);
+    Event findById(long ObjectId);
     boolean existsById(long ObjectId);
 }
