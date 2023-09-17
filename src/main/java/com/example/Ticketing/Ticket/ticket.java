@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import com.example.Ticketing.Event.Event;
 import lombok.*;
 
-@Entity
+
 @Getter
 @Setter
 @ToString
