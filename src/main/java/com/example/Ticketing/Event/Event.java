@@ -1,8 +1,11 @@
 package com.example.Ticketing.Event;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,7 +13,9 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.*;
 import com.example.Ticketing.Ticket.*;
 
-@Document(collection = "events")
+@Document(collection = "event")
+@Getter
+@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +27,6 @@ public class Event {
 
     private String date;
 
-    @DocumentReference
+    @DocumentReference(lazy = true)
     private List<Ticket> ticketIds;
 }

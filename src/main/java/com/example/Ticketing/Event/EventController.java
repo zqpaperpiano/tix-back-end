@@ -20,6 +20,6 @@ public class EventController {
 
     // @GetMapping("/allevents")
     // public List<Event> getallEvents(){
-    //     return new 
+    //     return eventService.allEvents();
     // }
 }
