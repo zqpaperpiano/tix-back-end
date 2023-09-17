@@ -5,7 +5,7 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.annotation.Id;
 
-import com.example.Ticketing.Event.*;
+import com.example.Ticketing.Event.Event;
 import lombok.*;
 
 @Entity
@@ -16,8 +16,8 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Ticket {
-    private int seat_num; //1 - 400
-    private  @Id Long id;
+    private int seat_num; // 1 - 400
+    private @Id Long id;
     private Event event;
     private boolean sold = false;
 

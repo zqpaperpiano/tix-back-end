@@ -6,7 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-// import com.example.Ticketing.Event.EventNotFoundException;
+import com.example.Ticketing.Event.EventNotFoundException;
 import com.example.Ticketing.Event.EventRepository;
 
 @RestController
@@ -39,7 +39,7 @@ public class TicketController {
     @PutMapping("/events/{eventId}/tickets/{ticketId}/sell")
     public Ticket sellTicket(@PathVariable (value = "eventId") Long eventId,
                                  @PathVariable (value = "ticketId") Long ticketId,
-                                 @Valid @RequestBody Ticket newTicket) {
+                                 @RequestBody Ticket newTicket) {
         if(!events.existsById(eventId)) {
             throw new EventNotFoundException(eventId);
         }
