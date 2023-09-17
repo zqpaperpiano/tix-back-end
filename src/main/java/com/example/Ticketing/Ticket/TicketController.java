@@ -39,7 +39,7 @@ public class TicketController {
     @PutMapping("/events/{eventId}/tickets/{ticketId}/sell")
     public Ticket sellTicket(@PathVariable (value = "eventId") Long eventId,
                                  @PathVariable (value = "ticketId") Long ticketId,
-                                 @Valid @RequestBody Ticket newTicket) {
+                                 @RequestBody Ticket newTicket) {
         if(!events.existsById(eventId)) {
             throw new EventNotFoundException(eventId);
         }
