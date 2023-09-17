@@ -1,6 +1,6 @@
 package com.example.Ticketing.Event;
 
-import java.util.List;
+// import java.util.List;
 // import java.util.Optional;
 import java.util.Optional;
 
@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EventRepository extends MongoRepository<Event, ObjectId> {
-    Optional<Event> findById(ObjectId ObjectId);
+    Optional<Event> findById(ObjectId eventId);
     boolean existsById(ObjectId ObjectId);
 }

@@ -1,7 +1,6 @@
 package com.example.Ticketing.Ticket;
 
 import org.bson.types.ObjectId;
-
 // import javax.persistence.*;
 // import javax.validation.constraints.*;
 
@@ -12,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import com.example.Ticketing.Event.Event;
 import lombok.*;
 
+// @Entity
 @Getter
 @Setter
 @ToString

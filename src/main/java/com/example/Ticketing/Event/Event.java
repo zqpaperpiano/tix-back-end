@@ -29,4 +29,8 @@ public class Event {
 
     @DocumentReference(lazy = true)
     private List<Ticket> ticketIds;
+
+    public Optional<Ticket> map(Object object) {
+        return null;
+    }
 }
