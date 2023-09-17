@@ -1,4 +1,4 @@
-package com.example.demo.Event;
+package com.example.Ticketing.Event;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -7,6 +7,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import java.util.*;
+import com.example.Ticketing.Ticket.*;
+
 @Document(collection = "events")
 @Data
 @AllArgsConstructor

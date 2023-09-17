@@ -1,4 +1,4 @@
-package com.example.demo.Ticket;
+package com.example.Ticketing.Ticket;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.demo.Event.EventNotFoundException;
-import com.example.demo.Event.EventRepository;
+// import com.example.Ticketing.Event.EventNotFoundException;
+import com.example.Ticketing.Event.EventRepository;
 
 @RestController
 public class TicketController {
