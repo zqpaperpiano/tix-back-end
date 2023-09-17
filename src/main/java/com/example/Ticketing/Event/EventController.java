@@ -13,8 +13,13 @@ import java.util.*;
 public class EventController {
     @Autowired
     private EventService eventService;
-    @GetMapping
-    public ResponseEntity<List<Event>> getAllEvents() {
-        return new ResponseEntity<List<Event>>(eventService.allEvents(), HttpStatus.OK);
+    @GetMapping("/events")
+    // public ResponseEntity<List<Event>> getAllEvents() {
+    //     return new ResponseEntity<List<Event>>(eventService.allEvents(), HttpStatus.OK);
+    // }
+
+    public String getApi(){
+        return "hello world.";
     }
+
 }

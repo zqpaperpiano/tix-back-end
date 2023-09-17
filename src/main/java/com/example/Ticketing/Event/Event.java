@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.*;
 import com.example.Ticketing.Ticket.*;
 
-@Document(collection = "events")
+@Document(collection = "event")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +24,8 @@ public class Event {
 
     @DocumentReference
     private List<Ticket> ticketIds;
+
+    public Optional<Ticket> map(Object object) {
+        return null;
+    }
 }
