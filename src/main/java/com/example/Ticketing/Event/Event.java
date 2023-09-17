@@ -1,8 +1,11 @@
 package com.example.Ticketing.Event;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +14,11 @@ import java.util.*;
 import com.example.Ticketing.Ticket.*;
 
 @Document(collection = "event")
+<<<<<<< HEAD
+=======
+@Getter
+@Setter
+>>>>>>> 7247ecd38236646470d78d0ab6e18552a8359cea
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +30,7 @@ public class Event {
 
     private String date;
 
-    @DocumentReference
+    @DocumentReference(lazy = true)
     private List<Ticket> ticketIds;
 
     public Optional<Ticket> map(Object object) {
