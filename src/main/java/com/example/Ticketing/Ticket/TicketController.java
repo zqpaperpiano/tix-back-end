@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
 
 // import javax.validation.Valid;
 
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.Ticketing.Event.EventNotFoundException;
 import com.example.Ticketing.Event.EventRepository;
@@ -21,22 +21,28 @@ public class TicketController {
         this.events = events;
     }
 
+    // @GetMapping("/events/{eventId}/tickets")
+    // public List<Ticket> getAllTicketsByEventId(@PathVariable ( value = "eventId") ObjectId eventId) {
+    //     if(!events.existsById(eventId)) {
+    //         throw new EventNotFoundException(eventId);
+    //     }
+    //     return tickets.findByEventId(eventId);
+    // }
     @GetMapping("/events/{eventId}/tickets")
-    public List<Ticket> getAllTicketsByEventId(@PathVariable (value = "eventId") ObjectId eventId) {
+    public List<Ticket> getAllTicketsByEventId(@PathVariable ( value = "eventId") ObjectId eventId) {
         if(!events.existsById(eventId)) {
             throw new EventNotFoundException(eventId);
         }
         return tickets.findByEventId(eventId);
     }
 
-    // @PostMapping("/events/{eventId}/tickets")
-    // public Ticket addTicket(@PathVariable (value = "eventId") Long eventId, @RequestBody Ticket ticket) {
-    //     // using "map" to handle the returned Optional object from "findById(eventId)"
-    //     return events.findById(eventId).map(event ->{
-    //         ticket.setEvent(event);
-    //         return tickets.save(ticket);
-    //     }).orElseThrow(() -> new EventNotFoundException(eventId));
-    // }
+    @PostMapping("/events/{eventId}/tickets")
+    public Ticket addTicket(@PathVariable (value = "eventId") ObjectId eventId, @RequestBody Ticket ticket) {
+        // using "map" to handle the returned Optional object from "findById(eventId)"
+        return events.findById(eventId).map(event ->{ticket.setEvent(event);
+            return tickets.save(ticket);
+        }).orElseThrow(() -> new EventNotFoundException(eventId));
+    }
 
     // @PutMapping("/events/{eventId}/tickets/{ticketId}/sell")
     // public Ticket sellTicket(@PathVariable (value = "eventId") Long eventId,
@@ -51,18 +57,18 @@ public class TicketController {
     //     }).orElseThrow(() -> new TicketNotFoundException(ticketId));
     // }
 
-    @PutMapping("/events/{eventId}/tickets/{ticketId}/cancel")
-    public Ticket cancelTicket(@PathVariable (value = "eventId") Long eventId,
-                                 @PathVariable (value = "ticketId") Long ticketId,
-                                 @Valid @RequestBody Ticket newTicket) {
-        if(!events.existsById(eventId)) {
-            throw new EventNotFoundException(eventId);
-        }
-        return tickets.findByIdAndEventId(ticketId, eventId).map(ticket -> {
-            ticket.setSold(false);
-            return tickets.save(ticket);
-        }).orElseThrow(() -> new TicketNotFoundException(ticketId));
-    }
+    // @PutMapping("/events/{eventId}/tickets/{ticketId}/cancel")
+    // public Ticket cancelTicket(@PathVariable (value = "eventId") Long eventId,
+    //                              @PathVariable (value = "ticketId") Long ticketId,
+    //                              @Valid @RequestBody Ticket newTicket) {
+    //     if(!events.existsById(eventId)) {
+    //         throw new EventNotFoundException(eventId);
+    //     }
+    //     return tickets.findByIdAndEventId(ticketId, eventId).map(ticket -> {
+    //         ticket.setSold(false);
+    //         return tickets.save(ticket);
+    //     }).orElseThrow(() -> new TicketNotFoundException(ticketId));
+    // }
 
     // @DeleteMapping("/events/{eventId}/tickets/{ticketId}")
     // public ResponseEntity<?> deleteTicket(@PathVariable (value = "eventId") Long eventId,

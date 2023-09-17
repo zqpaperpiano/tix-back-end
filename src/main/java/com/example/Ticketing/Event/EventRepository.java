@@ -12,11 +12,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EventRepository extends MongoRepository<Event, ObjectId> {
-<<<<<<< HEAD
-    Event findById(long ObjectId);
-    boolean existsById(long ObjectId);
-=======
-    Optional<Event> findById(ObjectId ObjectId);
+    Optional<Event> findById(ObjectId eventId);
     boolean existsById(ObjectId ObjectId);
->>>>>>> 7247ecd38236646470d78d0ab6e18552a8359cea
 }
