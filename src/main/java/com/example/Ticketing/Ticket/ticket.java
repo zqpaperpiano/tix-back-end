@@ -1,13 +1,12 @@
 package com.example.Ticketing.Ticket;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+// import javax.persistence.*;
+// import javax.validation.constraints.*;
 
 import org.springframework.data.annotation.Id;
 
 import com.example.Ticketing.Event.Event;
 import lombok.*;
-
 
 @Getter
 @Setter

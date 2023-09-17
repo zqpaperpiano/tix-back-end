@@ -2,7 +2,7 @@ package com.example.Ticketing.Ticket;
 
 import java.util.List;
 
-import javax.validation.Valid;
+// import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class TicketController {
     @PostMapping("/events/{eventId}/tickets")
     public Ticket addTicket(@PathVariable (value = "eventId") Long eventId, @RequestBody Ticket ticket) {
         // using "map" to handle the returned Optional object from "findById(eventId)"
-        return events.findById(eventId).map(event ->{
+        return events.findById(eventId).map(events ->{
             ticket.setEvent(event);
             return tickets.save(ticket);
         }).orElseThrow(() -> new EventNotFoundException(eventId));
