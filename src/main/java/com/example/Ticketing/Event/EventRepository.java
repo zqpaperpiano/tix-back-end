@@ -1,4 +1,4 @@
-package com.example.demo.Event;
+package com.example.Ticketing.Event;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;

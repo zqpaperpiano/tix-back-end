@@ -1,11 +1,11 @@
-package com.example.demo.Ticket;
+package com.example.Ticketing.Ticket;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.annotation.Id;
 
-import com.example.demo.Event.Event;
+import com.example.Ticketing.Event.*;
 import lombok.*;
 
 @Entity
