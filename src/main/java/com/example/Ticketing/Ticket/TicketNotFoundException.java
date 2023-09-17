@@ -1,4 +1,4 @@
-package com.example.demo.Ticket;
+package com.example.Ticketing.Ticket;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

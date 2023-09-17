@@ -1,11 +1,11 @@
-package com.example.demo.Ticket;
+package com.example.Ticketing.Ticket;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.annotation.Id;
 
-import com.example.demo.Event.Event;
+import com.example.Ticketing.Event.Event;
 import lombok.*;
 
 @Entity
@@ -16,8 +16,8 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Ticket {
-    private int seat_num; //1 - 400
-    private  @Id Long id;
+    private int seat_num; // 1 - 400
+    private @Id Long id;
     private Event event;
     private boolean sold = false;
 
