@@ -21,12 +21,16 @@ import lombok.*;
 @EqualsAndHashCode
 @Document(collection = "ticket")
 public class Ticket {
-    private @Id ObjectId id;
+    @Id
+    private ObjectId id;
     private int seat_num; // 1 - 400
     private boolean sold = false;
 
     // @DocumentReference(lookup = "{ 'name' : ?#{Taylor Swift} }")
-    @DBRef
-    private Event event;
+    private ObjectId eventId;
 
+    public Ticket(int seat_num, boolean sold){
+        this.seat_num = seat_num;
+        this.sold = sold;
+    }
 }

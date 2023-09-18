@@ -12,27 +12,27 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.*;
-import com.example.Ticketing.Ticket.*;
+import com.example.Ticketing.Ticket.Ticket;
 
 @Document(collection = "event")
 @Getter
 @Setter
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+// @AllArgsConstructor
+// @NoArgsConstructor
 public class Event {
     @Id
     private ObjectId id;
 
     private String name;
 
-    private String date;
+    private String date; //create 1 document for each date
 
-    // @DocumentReference
-    private List<Ticket> ticketIds = new ArrayList<>();
+    private List<Ticket> ticketIds;
 
-
-    public Optional<Ticket> map(Object object) {
-        return null;
+    public Event(String name, String date){
+        this.name = name;
+        this.date = date;
+        this.ticketIds = new ArrayList<Ticket>(); //hello
     }
 }
