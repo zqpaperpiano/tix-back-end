@@ -33,6 +33,6 @@ public class Event {
     public Event(String name, String date){
         this.name = name;
         this.date = date;
-        this.ticketIds = new ArrayList<Ticket>(); 
+        this.ticketIds = new ArrayList<Ticket>(); //hello
     }
 }
