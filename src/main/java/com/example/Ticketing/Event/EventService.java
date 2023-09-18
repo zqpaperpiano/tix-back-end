@@ -18,4 +18,8 @@ public class EventService {
     public Optional<Event> singleEvent(ObjectId id) {
         return eventRepository.findById(id);
     }
+
+    public Event save(Event e){
+        return eventRepository.save(e);
+    }
 }
