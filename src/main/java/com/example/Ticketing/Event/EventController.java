@@ -36,7 +36,7 @@ public class EventController {
         return new ResponseEntity<Optional<Event>>(eventService.singleEvent(id), HttpStatus.OK);
     }
 
-    @GetMapping("/events/{id}/date")
+    // @GetMapping("/events/{id}/date")
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/events/add")

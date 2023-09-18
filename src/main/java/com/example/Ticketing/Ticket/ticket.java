@@ -16,8 +16,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
+//  @AllArgsConstructor
+//  @NoArgsConstructor
 @EqualsAndHashCode
 @Document(collection = "ticket")
 public class Ticket {

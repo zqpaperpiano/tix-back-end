@@ -54,6 +54,7 @@ public class TicketController {
         return events.findById(id).map(event -> {
             event.getTicketIds().add(ticket);
             ticket.setEventId(id);
+            events.save(event);
             return tickets.save(ticket);
         }).orElseThrow(() -> new EventNotFoundException(id));
     }
