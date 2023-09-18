@@ -5,8 +5,9 @@ import org.bson.types.ObjectId;
 // import javax.validation.constraints.*;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
+// import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import com.example.Ticketing.Event.Event;
 import lombok.*;
@@ -24,7 +25,8 @@ public class Ticket {
     private int seat_num; // 1 - 400
     private boolean sold = false;
 
-    @DocumentReference(lookup = "{ 'name' : ?#{Taylor Swift} }")
+    // @DocumentReference(lookup = "{ 'name' : ?#{Taylor Swift} }")
+    @DBRef
     private Event event;
 
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.*;
@@ -27,8 +28,9 @@ public class Event {
 
     private String date;
 
-    @DocumentReference(lazy = true)
-    private List<Ticket> ticketIds;
+    // @DocumentReference
+    private List<Ticket> ticketIds = new ArrayList<>();
+
 
     public Optional<Ticket> map(Object object) {
         return null;

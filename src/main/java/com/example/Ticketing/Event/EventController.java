@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.bson.types.ObjectId;
@@ -11,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/")
 public class EventController {
     @Autowired
     private EventService eventService;
@@ -25,8 +27,13 @@ public class EventController {
     //     return eventService.allEvents();
     // }
 
-    @GetMapping("/{id}")
+    @GetMapping("/events/{id}")
     public ResponseEntity<Optional<Event>> getSingleEvent(@PathVariable ObjectId id) {
         return new ResponseEntity<Optional<Event>>(eventService.singleEvent(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/createEvent")
+    public Event addEvent(@RequestBody Event event){
+        return eventService.save(event);
     }
 }
