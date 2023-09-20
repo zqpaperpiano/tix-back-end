@@ -12,7 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.example.Ticketing.Event.Event;
 import lombok.*;
 
-// @Entity
 @Getter
 @Setter
 @ToString
