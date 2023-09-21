@@ -1,21 +1,29 @@
 package com.example.Ticketing.Ticket;
 
-import java.util.ArrayList;
+//ticketing
+import java.util.ArrayList; 
 import java.util.List;
 
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 // import javax.validation.Valid;
 
 // import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.Ticketing.Event.Event;
 import com.example.Ticketing.Event.EventNotFoundException;
 import com.example.Ticketing.Event.EventRepository;
 
 @RestController
+@RequestMapping("/api/v1/")
 public class TicketController {
+
+    @Autowired
     private EventRepository events;
+    @Autowired
     private TicketRepository tickets;
 
     public TicketController(TicketRepository tickets, EventRepository events) {
@@ -47,6 +55,7 @@ public class TicketController {
         return events.findById(id).map(event -> {
             event.getTicketIds().add(ticket);
             ticket.setEventId(id);
+            events.save(event);
             return tickets.save(ticket);
         }).orElseThrow(() -> new EventNotFoundException(id));
     }

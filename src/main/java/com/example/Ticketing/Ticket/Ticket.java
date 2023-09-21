@@ -5,18 +5,18 @@ import org.bson.types.ObjectId;
 // import javax.validation.constraints.*;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
+// import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import com.example.Ticketing.Event.Event;
 import lombok.*;
 
-// @Entity
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
+//  @AllArgsConstructor
+//  @NoArgsConstructor
 @EqualsAndHashCode
 @Document(collection = "ticket")
 public class Ticket {

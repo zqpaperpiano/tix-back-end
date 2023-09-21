@@ -17,11 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/")
 public class EventController {
     @Autowired
     private EventService eventService;
-
     @GetMapping("/events")
     public ResponseEntity<List<Event>> getAllEvents() {
         return new ResponseEntity<List<Event>>(eventService.allEvents(), HttpStatus.OK);
@@ -37,7 +36,7 @@ public class EventController {
         return new ResponseEntity<Optional<Event>>(eventService.singleEvent(id), HttpStatus.OK);
     }
 
-    @GetMapping("/events/{id}/date")
+    // @GetMapping("/events/{id}/date")
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/events/add")
