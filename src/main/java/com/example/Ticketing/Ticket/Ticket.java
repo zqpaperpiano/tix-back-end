@@ -22,14 +22,18 @@ import lombok.*;
 public class Ticket {
     @Id
     private ObjectId id;
-    private int seat_num; // 1 - 400
+    private int seatNum; // 1 - 400
     private boolean sold = false;
+    private int category;
+    private float price;
 
     // @DocumentReference(lookup = "{ 'name' : ?#{Taylor Swift} }")
     private ObjectId eventId;
 
-    public Ticket(int seat_num, boolean sold){
-        this.seat_num = seat_num;
+    public Ticket(){}
+    public Ticket(int seatNum, boolean sold, int category){
+        this.category = category;
+        this.seatNum = seatNum;
         this.sold = sold;
     }
 }

@@ -13,4 +13,8 @@ import org.yaml.snakeyaml.events.Event.ID;
 public interface TicketRepository extends MongoRepository<Ticket, ObjectId> {
 	List<Ticket> findByEventId(ObjectId eventId) ;
     Optional<Ticket> findByIdAndEventId(ObjectId TicketId, ObjectId eventId);
+    Optional<Ticket> findByEventIdAndSeatNum(ObjectId eventId, int category);
+
+    //find ticket by category
+    Optional<List<Ticket>> findByEventIdAndCategory(ObjectId eventId, int category);
 }

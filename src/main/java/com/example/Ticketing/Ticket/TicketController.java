@@ -3,6 +3,7 @@ package com.example.Ticketing.Ticket;
 //ticketing
 import java.util.ArrayList; 
 import java.util.List;
+import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,42 @@ public class TicketController {
             throw new EventNotFoundException(eventId);
         }
         return tickets.findByEventId(eventId);
+    }
+/*------------------------------ Gerald start ---------------------------------- */
+    @GetMapping("/events/{eventId}/ticketByCategory/{category}")
+    public Optional <List<Ticket>> getTicketByEventIdAndCategory(@PathVariable(value = "eventId") ObjectId eventId, 
+    @PathVariable(value = "category") int category) {
+
+        if (!events.existsById(eventId)) {
+            throw new EventNotFoundException(eventId);
+        }
+
+        return tickets.findByEventIdAndCategory(eventId, category);
+    }
+
+    //get ticket by EventName and Category
+
+    // @GetMapping("/events/getByEventName/{eventName}/ticketByCategory/{category}")
+    // public Optional <List<Ticket>> getTicketByEventNameAndCategory(@PathVariable(value = "eventName") String eventName, 
+    // @PathVariable(value = "category") int category) {
+
+    //     Event e = events.findByName(eventName); //find event by name
+    //     if (e == null){ throw new EventNotFoundException(eventName);}
+    //     else if (!events.existsById(e.getId())){
+    //         throw new EventNotFoundException(eventName);
+    //     }
+
+    //     return tickets.findByEventIdAndCategory(e.getId(), category);
+    // }
+/*------------------------------ Gerald End ---------------------------------- */
+
+
+    @GetMapping("/events/{eventId}/ticketBySeat/{seat_num}")
+    public Optional<Ticket> getTicketByEventIdAndSeatNum(@PathVariable(value = "eventId") ObjectId eventId, @PathVariable int seat_num) {
+        if (!events.existsById(eventId)) {
+            throw new EventNotFoundException(eventId);
+        }
+        return tickets.findByEventIdAndSeatNum(eventId, seat_num);
     }
 
     //adds ticket to ticket list in Event

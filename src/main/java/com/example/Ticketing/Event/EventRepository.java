@@ -1,5 +1,6 @@
 package com.example.Ticketing.Event;
 
+import java.util.List;
 // import java.util.List;
 // import java.util.Optional;
 import java.util.Optional;
@@ -15,4 +16,8 @@ import org.yaml.snakeyaml.events.Event.ID;
 public interface EventRepository extends MongoRepository<Event, ObjectId> {
     Optional<Event> findById(ObjectId eventId);
     boolean existsById(ID ObjectId);
+    List<Event> findByName(String eventName);
+    List<Event> findByDate(String eventDate);
+    Event findByNameAndDate(String eventName, String eventDate);
+
 }

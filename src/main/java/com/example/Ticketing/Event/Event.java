@@ -24,15 +24,27 @@ public class Event {
     @Id
     private ObjectId id;
 
+    @Getter 
+    @Setter
     private String name;
 
+    @Getter 
+    @Setter
     private String date; //create 1 document for each date
 
     private List<Ticket> ticketIds;
 
-    public Event(String name, String date){
+    private int categories[]; // i.e. [1,2,3]
+    private int num_ticket_per_category[]; // i.e. [100,100,100]
+    private float price[];
+
+    public Event(){}
+    public Event(String name, String date, int[] categories, int[] num_ticket_per_category, float[] price) {
         this.name = name;
         this.date = date;
-        this.ticketIds = new ArrayList<Ticket>(); //hello
+        this.categories = categories;
+        this.num_ticket_per_category = num_ticket_per_category;
+        this.price = price;
+        this.ticketIds = new ArrayList<Ticket>(); // hello
     }
 }
