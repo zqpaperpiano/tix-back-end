@@ -1,7 +1,7 @@
 package com.example.Ticketing.Ticket;
 
 //ticketing
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,7 +84,9 @@ public class TicketController {
         return tickets.findByEventIdAndSeatNum(eventId, seat_num);
     }
 
-    //adds ticket to ticket list in Event
+
+    // adds ticket to ticket list in Event 
+    // http body -> int seatNum, boolean sold, int category
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/events/{eventId}/tickets")
     public Ticket addTicket(@PathVariable(value = "eventId") ObjectId id, @RequestBody Ticket ticket) {
@@ -92,37 +94,38 @@ public class TicketController {
         return events.findById(id).map(event -> {
             event.getTicketIds().add(ticket);
             ticket.setEventId(id);
+            ticket.setPrice(event.getPrice()[(ticket.getCategory() - 1)]);
             events.save(event);
             return tickets.save(ticket);
         }).orElseThrow(() -> new EventNotFoundException(id));
     }
 
-    //sets boolean sold to true
+    // sets boolean sold to true
     @PutMapping("/events/{eventId}/tickets/{ticketId}/sell")
-    public Ticket sellTicket(@PathVariable (value = "eventId") ObjectId eventId,
-    @PathVariable (value = "ticketId") ObjectId ticketId,
-    @RequestBody Ticket newTicket) {
-    if(!events.existsById(eventId)) {
-    throw new EventNotFoundException(eventId);
-    }
-    return tickets.findByIdAndEventId(ticketId, eventId).map(ticket -> {
-    ticket.setSold(true);
-    return tickets.save(ticket);
-    }).orElseThrow(() -> new TicketNotFoundException(ticketId));
+    public Ticket sellTicket(@PathVariable(value = "eventId") ObjectId eventId,
+            @PathVariable(value = "ticketId") ObjectId ticketId,
+            @RequestBody Ticket newTicket) {
+        if (!events.existsById(eventId)) {
+            throw new EventNotFoundException(eventId);
+        }
+        return tickets.findByIdAndEventId(ticketId, eventId).map(ticket -> {
+            ticket.setSold(true);
+            return tickets.save(ticket);
+        }).orElseThrow(() -> new TicketNotFoundException(ticketId));
     }
 
-    //sets boolean sold to false
+    // sets boolean sold to false
     @PutMapping("/events/{eventId}/tickets/{ticketId}/cancel")
-    public Ticket cancelTicket(@PathVariable (value = "eventId") ObjectId eventId,
-    @PathVariable (value = "ticketId") ObjectId ticketId,
-    @RequestBody Ticket newTicket) {
-    if(!events.existsById(eventId)) {
-    throw new EventNotFoundException(eventId);
-    }
-    return tickets.findByIdAndEventId(ticketId, eventId).map(ticket -> {
-    ticket.setSold(false);
-    return tickets.save(ticket);
-    }).orElseThrow(() -> new TicketNotFoundException(ticketId));
+    public Ticket cancelTicket(@PathVariable(value = "eventId") ObjectId eventId,
+            @PathVariable(value = "ticketId") ObjectId ticketId,
+            @RequestBody Ticket newTicket) {
+        if (!events.existsById(eventId)) {
+            throw new EventNotFoundException(eventId);
+        }
+        return tickets.findByIdAndEventId(ticketId, eventId).map(ticket -> {
+            ticket.setSold(false);
+            return tickets.save(ticket);
+        }).orElseThrow(() -> new TicketNotFoundException(ticketId));
     }
 
     // @DeleteMapping("/events/{eventId}/tickets/{ticketId}")
