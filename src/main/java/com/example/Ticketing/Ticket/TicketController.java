@@ -47,7 +47,7 @@ public class TicketController {
         }
         return tickets.findByEventId(eventId);
     }
-/*------------------------------ Gerald start ---------------------------------- */
+/*------------------------------ NEW ---------------------------------- */
     @GetMapping("/events/{eventId}/ticketByCategory/{category}")
     public Optional <List<Ticket>> getTicketByEventIdAndCategory(@PathVariable(value = "eventId") ObjectId eventId, 
     @PathVariable(value = "category") int category) {
@@ -61,19 +61,24 @@ public class TicketController {
 
     //get ticket by EventName and Category
 
-    // @GetMapping("/events/getByEventName/{eventName}/ticketByCategory/{category}")
-    // public Optional <List<Ticket>> getTicketByEventNameAndCategory(@PathVariable(value = "eventName") String eventName, 
-    // @PathVariable(value = "category") int category) {
+    @GetMapping("/events/getEventByNameDate/{eventName}/{eventDate}/ticketByCategory/{category}")
+    public Ticket getTicketByEventNameAndCategory(@PathVariable(value = "eventName") String eventName, @PathVariable(value = "eventDate") String eventDate,
+    @PathVariable(value = "category") int category) {
 
-    //     Event e = events.findByName(eventName); //find event by name
-    //     if (e == null){ throw new EventNotFoundException(eventName);}
-    //     else if (!events.existsById(e.getId())){
-    //         throw new EventNotFoundException(eventName);
-    //     }
+        Event e = events.findByNameAndDate(eventName, eventDate); //find event by name & date
+        if (e == null){ throw new EventNotFoundException(eventName);}
+        else if (!events.existsById(e.getId())){
+            throw new EventNotFoundException(eventName);
+        }
 
-    //     return tickets.findByEventIdAndCategory(e.getId(), category);
-    // }
-/*------------------------------ Gerald End ---------------------------------- */
+        Optional<List<Ticket>> outputList = tickets.findByEventIdAndCategory(e.getId(), category);
+        if(outputList.isPresent()){
+            return outputList.get().get(0);
+        }else{
+            throw new TicketNotFoundException(eventName);
+        }
+    }
+/*------------------------------ NEW ---------------------------------- */
 
 
     @GetMapping("/events/{eventId}/ticketBySeat/{seat_num}")

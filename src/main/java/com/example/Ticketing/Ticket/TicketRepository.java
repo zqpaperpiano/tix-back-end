@@ -17,4 +17,5 @@ public interface TicketRepository extends MongoRepository<Ticket, ObjectId> {
     //find ticket by category
     Optional<List<Ticket>> findByEventIdAndCategory(ObjectId eventId, int category);
     Optional<Ticket> findByEventIdAndSeatNum(ObjectId eventId, int seat_num);
+
 }
