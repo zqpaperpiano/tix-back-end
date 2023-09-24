@@ -47,6 +47,39 @@ public class TicketController {
         }
         return tickets.findByEventId(eventId);
     }
+/*------------------------------ NEW ---------------------------------- */
+    @GetMapping("/events/{eventId}/ticketByCategory/{category}")
+    public Optional <List<Ticket>> getTicketByEventIdAndCategory(@PathVariable(value = "eventId") ObjectId eventId, 
+    @PathVariable(value = "category") int category) {
+
+        if (!events.existsById(eventId)) {
+            throw new EventNotFoundException(eventId);
+        }
+
+        return tickets.findByEventIdAndCategory(eventId, category);
+    }
+
+    //get ticket by EventName and Category
+
+    @GetMapping("/events/getEventByNameDate/{eventName}/{eventDate}/ticketByCategory/{category}")
+    public Ticket getTicketByEventNameAndCategory(@PathVariable(value = "eventName") String eventName, @PathVariable(value = "eventDate") String eventDate,
+    @PathVariable(value = "category") int category) {
+
+        Event e = events.findByNameAndDate(eventName, eventDate); //find event by name & date
+        if (e == null){ throw new EventNotFoundException(eventName);}
+        else if (!events.existsById(e.getId())){
+            throw new EventNotFoundException(eventName);
+        }
+
+        Optional<List<Ticket>> outputList = tickets.findByEventIdAndCategory(e.getId(), category);
+        if(outputList.isPresent()){
+            return outputList.get().get(0);
+        }else{
+            throw new TicketNotFoundException(eventName);
+        }
+    }
+/*------------------------------ NEW ---------------------------------- */
+
 
     @GetMapping("/events/{eventId}/ticketBySeat/{seat_num}")
     public Optional<Ticket> getTicketByEventIdAndSeatNum(@PathVariable(value = "eventId") ObjectId eventId, @PathVariable int seat_num) {
@@ -55,6 +88,7 @@ public class TicketController {
         }
         return tickets.findByEventIdAndSeatNum(eventId, seat_num);
     }
+
 
     // adds ticket to ticket list in Event 
     // http body -> int seatNum, boolean sold, int category

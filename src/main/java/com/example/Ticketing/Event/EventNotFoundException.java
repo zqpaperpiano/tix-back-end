@@ -11,4 +11,8 @@ public class EventNotFoundException extends RuntimeException{
     public EventNotFoundException(ObjectId eventId) {
         super("Could not find event " + eventId);
     }
+    public EventNotFoundException(String eventNameOrDate) {
+        super("Could not find event " + eventNameOrDate);
+    }
+
 }

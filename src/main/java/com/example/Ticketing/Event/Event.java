@@ -24,9 +24,13 @@ public class Event {
     @Id
     private ObjectId id;
 
+    @Getter 
+    @Setter
     private String name;
 
-    private String date; // create 1 document for each date
+    @Getter 
+    @Setter
+    private String date; //create 1 document for each date
 
     private List<Ticket> ticketIds;
 
@@ -34,6 +38,7 @@ public class Event {
     private int num_ticket_per_category[]; // i.e. [100,100,100]
     private float price[];
 
+    public Event(){}
     public Event(String name, String date, int[] categories, int[] num_ticket_per_category, float[] price) {
         this.name = name;
         this.date = date;

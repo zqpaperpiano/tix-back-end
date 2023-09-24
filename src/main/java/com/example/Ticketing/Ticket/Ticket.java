@@ -30,6 +30,7 @@ public class Ticket {
     // @DocumentReference(lookup = "{ 'name' : ?#{Taylor Swift} }")
     private ObjectId eventId;
 
+    public Ticket(){}
     public Ticket(int seatNum, boolean sold, int category){
         this.category = category;
         this.seatNum = seatNum;

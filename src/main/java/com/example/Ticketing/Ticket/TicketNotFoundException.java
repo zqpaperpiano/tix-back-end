@@ -12,4 +12,7 @@ public class TicketNotFoundException extends RuntimeException{
     public TicketNotFoundException(ObjectId id) {
         super("Could not find ticket " + id);
     }
+    public TicketNotFoundException(String eventName) {
+        super("Could not find ticket " + eventName);
+    }
 }
